@@ -1,16 +1,24 @@
-# This is a sample Python script.
+import art
+bidding_record = {}
 
-# Press Ctrl+F5 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+print(art.logo)
 
+def find_highest_bidder(bids):
+    print('\n' * 20)
+    for name, bid in bidding_record.items():
+        if bid == max(bidding_record.values()):
+            print(f"The winner is {name} with a bid of ${bid}")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press F9 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+bidding = True
+while bidding:
+    name = input("What is your name?: ")
+    bid = int(input("What is your bid?: $"))
+    bidding_record[name] = bid
+    others = input("Are there any other bidders? Type 'yes or 'no'.\n").lower()
+    if others == 'no':
+        find_highest_bidder(bidding_record)
+        bidding = False
+    elif others != 'yes' and others != 'no':
+        print("That is not a valid option. Try again")
+    else:
+        print('\n'*20)
